@@ -68,20 +68,25 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.label_name7.show()
             self.input_name6.show()
 
+    def show_error(self, message: str):
+        self.label_name9.setStyleSheet("color: red;")
+        self.label_name9.setText(message)
+    
+
     def submit(self) -> None:
         """Generate scores and calculate final score."""
         name = self.input_name.text().strip()
         attempts_text = self.input_name2.text().strip()
 
         if name == "":
-            self.label_name9.setText("Enter student name")
+            self.show_error("Enter student name")
             return
 
         try:
             attempts = int(attempts_text)
 
             if attempts < 1 or attempts > 4:
-                self.label_name9.setText("Attempts must be 1 to 4")
+                self.show_error("Attempts must be 1 to 4")
                 return
 
             self.show_score_boxes()
@@ -127,8 +132,9 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.label_name9.setText("Scores generated")
 
         except ValueError:
-            self.label_name9.setText("Attempts must be an integer")
+            self.show_error("Attempts must be an integer")
 
+    """Ai was used for this part"""
     def save(self) -> None:
         """Save the current record to a CSV file."""
         if self.current_record is None:
@@ -143,7 +149,7 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.label_name9.setText("Saved")
 
         except OSError:
-            self.label_name9.setText("Could not save file")
+            self.show_error("Could not save file")
 
     def clear(self) -> None:
         """Clear the form."""
