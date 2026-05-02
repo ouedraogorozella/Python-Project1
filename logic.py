@@ -73,6 +73,12 @@ class Logic(QMainWindow, Ui_MainWindow):
     def show_error(self, message: str):
         self.label_name9.setStyleSheet("color: red;")
         self.label_name9.setText(message)
+
+
+    def show_success(self, message: str):
+         self.label_name9.setStyleSheet("color: white;")
+         self.label_name9.setText(message)
+
     
 
     def submit(self) -> None:
@@ -131,7 +137,7 @@ class Logic(QMainWindow, Ui_MainWindow):
                 final_score
             ]
 
-            self.label_name9.setText("Scores generated")
+            self.show_success("Scores generated")
 
         except ValueError:
             self.show_error("Attempts must be an integer")
