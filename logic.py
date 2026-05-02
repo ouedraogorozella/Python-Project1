@@ -68,6 +68,8 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.label_name7.show()
             self.input_name6.show()
 
+
+    """Ai was used for this part"""
     def show_error(self, message: str):
         self.label_name9.setStyleSheet("color: red;")
         self.label_name9.setText(message)
